@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/775facc0e6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style.css">
+    <script type="text/javascript" src="script.js"></script>
     <title>Parrainsup</title>
 </head>
 <body>
@@ -14,20 +15,33 @@
         <div class="top">
             <img id="logo" src="https://media.discordapp.net/attachments/1017743516295766067/1029019857250959440/parrainsup.png" alt="Logo parrainsup">
         </div>
-        <div class="middle">
+        <div class="content">
             <div class="card">
-                
+                <img id="card-picture" src="https://picsum.photos/300/200" alt="photo">
+                <h3 id="card-name">Antonin</h3>
+                <h4 id="card-school">ENSEIRB-MATMECA</h4>
+                <div id="card-description">
+                    <p class="card-description-style" id="card-description-1">Trop cringe</p>
+                    <p class="card-description-style" id="card-description-2">S'est déjà fait sucer dans un parc</p>
+                    <p class="card-description-style" id="card-description-3">Est le bébou d'Eliot</p>
+                </div>
             </div>
         </div>
         <div class="navbar">
-            <div class="icon_div" id="icon_profile">
-                <i class="icon fa-solid fa-user"></i>
+            <div class="icon-conteiner" id="icon-profile">
+                <button class="navbar-button" id="button-profile" onclick="buttonProfileFunction()">
+                    <i class="icon fa-solid fa-user"></i>
+                </button>
             </div>
-            <div class="icon_div" id="icon_home">
-                <i class="icon fa-solid fa-house"></i>
+            <div class="icon-conteiner" id="icon-home">
+                <button class="navbar-button" id="button-home" onclick="buttonHomeFunction()">
+                    <i class="icon fa-solid fa-house"></i>
+                </button>
             </div>
-            <div class="icon_div" id="icon_match">
-                <i class="icon fa-solid fa-check"></i>
+            <div class="icon-conteiner" id="icon-match">
+                <button class="navbar-button" id="button-match" onclick="buttonMatchFunction()">
+                    <i class="icon fa-solid fa-check"></i>
+                </button>
             </div>
         </div>
     </div>
