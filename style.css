@@ -40,6 +40,7 @@ body{
 }
 
 #card-name {
+    margin-top: 0.8rem;
     font-weight: bold;
     font-size: 1.6rem;
     margin-bottom: 0;
@@ -68,13 +69,13 @@ body{
     position: absolute;
     background-color: #3d566e;
     width: 100%;
-    height: 3.3rem;
+    height: 3.5rem;
     position: absolute;
     bottom: 0;
 }
 
 .icon-conteiner {
-    padding-top: 1em;
+    padding-top: 1.2rem;
 }
 
 .navbar-button {
