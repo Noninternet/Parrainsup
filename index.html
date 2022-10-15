@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/775facc0e6.js" crossorigin="anonymous"></script>
     <link rel="website icon" type="png" href="./assets/img/logo_ps.png">
     <link rel="stylesheet" href="./style.css">
+    <script src="https://unpkg.com/vue@next"></script>
     <script type="text/javascript" src="script.js"></script>
     <title>Parrainsup</title>
 </head>
@@ -16,15 +17,13 @@
         <div class="top">
             <img id="logo" src="./assets/img/parrainsup.png" alt="Logo parrainsup">
         </div>
-        <div class="content">
+        <div id="content">
             <div class="card">
-                <img id="card-picture" src="https://picsum.photos/300/200" alt="photo">
-                <h3 id="card-name">Antonin</h3>
-                <h4 id="card-school">ENSEIRB-MATMECA</h4>
+                <img id="card-picture" v-bind:src="user.imageUrl" alt="photo">
+                <h3 id="card-name">{{ user.prenom }}</h3>
+                <h4 id="card-school">{{ user.ecole }}</h4>
                 <div id="card-description">
-                    <p class="card-description-style" id="card-description-1">Trop cringe</p>
-                    <p class="card-description-style" id="card-description-2">S'est déjà fait sucer dans un parc</p>
-                    <p class="card-description-style" id="card-description-3">Est le bébou d'Eliot</p>
+                    <p class="card-description-style" v-for="annecdote in user.description" :key="annecdote.id">{{ annecdote.text }}</p>
                 </div>
             </div>
         </div>
@@ -46,5 +45,24 @@
             </div>
         </div>
     </div>
+    <script>
+        const vm = Vue.createApp({
+            data(){
+                return {
+                    user: {
+                        imageUrl: "https://picsum.photos/300/200",
+                        prenom: 'Antonin',
+                        ecole: "ENSEIRB-MATMECA",
+                        description: [
+                            {id: 0, text: "Trop cringe"},
+                            {id: 1, text: "S'est déjà fait sucer dans un parc"},
+                            {id: 3, text: "Est le bébou d'Eliot"},
+                            {id: 3, text: "Viens en cours d'info contrairement à certains"}
+                        ]
+                    }
+                }
+            }
+        }).mount('#content')
+    </script>
 </body>
 </html>
