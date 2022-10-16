@@ -2,7 +2,7 @@ body{
     margin: 0;
 }
 
-.page {
+#page {
     margin: 0;
 }
 
@@ -89,5 +89,13 @@ body{
 
 .icon {
     color: lightgray;
+}
+
+
+.little-icon {
     scale: 150%;
+}
+
+.big-icon {
+    scale: 200%;
 }

@@ -9,15 +9,20 @@
     <link rel="website icon" type="png" href="./assets/img/logo_ps.png">
     <link rel="stylesheet" href="./style.css">
     <script src="https://unpkg.com/vue@next"></script>
-    <script type="text/javascript" src="script.js"></script>
     <title>Parrainsup</title>
 </head>
 <body>
-    <div class="page">
+    <div id="page">
         <div class="top">
             <img id="logo" src="./assets/img/parrainsup.png" alt="Logo parrainsup">
         </div>
-        <div id="content">
+        <div id="content-profile" v-if=" page === 'profile' ">
+            <p>Page de profile</p>
+        </div>
+        <div id="content-match" v-else-if=" page === 'match' ">
+            <p>Page des match</p>
+        </div>
+        <div id="content-home" v-else>
             <div class="card">
                 <img id="card-picture" v-bind:src="user.imageUrl" alt="photo">
                 <h3 id="card-name">{{ user.prenom }}</h3>
@@ -29,18 +34,18 @@
         </div>
         <div class="navbar">
             <div class="icon-conteiner">
-                <button class="navbar-button" id="button-profile" onclick="buttonFunction('profile')">
-                    <i id="icon-profile" class="icon fa-solid fa-user"></i>
+                <button class="navbar-button" id="button-profile" @click="changePage('profile')">
+                    <i id="icon-profile" :class="{ 'big-icon': page === 'profile', 'little-icon': page !== 'profile' }" class="icon fa-solid fa-user"></i>
                 </button>
             </div>
             <div class="icon-conteiner">
-                <button class="navbar-button" id="button-home" onclick="buttonFunction('home')">
-                    <i id="icon-home" class="icon fa-solid fa-right-left"></i>
+                <button class="navbar-button" id="button-home" @click="changePage('home')">
+                    <i id="icon-home" :class="{ 'big-icon': page === 'home', 'little-icon': page !== 'home' }" class="icon fa-solid fa-right-left"></i>
                 </button>
             </div>
             <div class="icon-conteiner">
-                <button class="navbar-button" id="button-match" onclick="buttonFunction('match')">
-                    <i id="icon-match" class="icon fa-solid fa-check"></i>
+                <button class="navbar-button" id="button-match" @click="changePage('match')">
+                    <i id="icon-match" :class="{ 'big-icon': page === 'match', 'little-icon': page !== 'match' }" class="icon fa-solid fa-check"></i>
                 </button>
             </div>
         </div>
@@ -49,6 +54,7 @@
         const vm = Vue.createApp({
             data(){
                 return {
+                    page: 'home',
                     user: {
                         imageUrl: "https://picsum.photos/300/200",
                         prenom: 'Antonin',
@@ -61,8 +67,13 @@
                         ]
                     }
                 }
+            },
+            methods: {
+                changePage(page){
+                    this.page = page;
+                }
             }
-        }).mount('#content')
+        }).mount('#page')
     </script>
 </body>
 </html>
