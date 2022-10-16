@@ -17,18 +17,33 @@
             <img id="logo" src="./assets/img/parrainsup.png" alt="Logo parrainsup">
         </div>
         <div id="content-profile" v-if=" page === 'profile' ">
-            <p>Page de profile</p>
+            <h1 id="profile-page-title">Modifiez les informations de votre profil</h1>
+            <form action="" method="get" id="form-info-profile">
+                <div class="form-info-profile-element">
+                    <label for="prenom-input">Prénom</label><br>
+                    <input v-model="user.prenom" type="text" name="prenom" id="prenom-input" required>
+                </div>
+                <div class="form-info-profile-element">
+                    <label for="ecole-select">École</label><br>
+                    <select v-model="user.ecole" name="ecole" id="ecole-select">
+                        <option v-for=" ecole in listEcoles " :value="ecole">{{ ecole }}</option>
+                    </select>
+                </div>
+                <div class="form-info-profile-element">
+                    <input id="form-info-profile-submit" type="submit" value="Modifier le profil">
+                </div>
+              </form>
         </div>
         <div id="content-match" v-else-if=" page === 'match' ">
             <p>Page des match</p>
         </div>
         <div id="content-home" v-else>
             <div class="card">
-                <img id="card-picture" v-bind:src="user.imageUrl" alt="photo">
-                <h3 id="card-name">{{ user.prenom }}</h3>
-                <h4 id="card-school">{{ user.ecole }}</h4>
+                <img id="card-picture" v-bind:src="cardUser.imageUrl" alt="photo">
+                <h3 id="card-name">{{ cardUser.prenom }}</h3>
+                <h4 id="card-school">{{ cardUser.ecole }}</h4>
                 <div id="card-description">
-                    <p class="card-description-style" v-for="annecdote in user.description" :key="annecdote.id">{{ annecdote.text }}</p>
+                    <p class="card-description-style" v-for="annecdote in cardUser.description" :key="annecdote.id">{{ annecdote.text }}</p>
                 </div>
             </div>
         </div>
@@ -55,7 +70,30 @@
             data(){
                 return {
                     page: 'home',
+                    listEcoles: [
+                        "BSA",
+                        "ENSC",
+                        "ENSCBP Bio",
+                        "ENSCBP Chimie",
+                        "ENSEIGID",
+                        "ENSEIRB-MATMECA",
+                        "ENSGTI",
+                        "ENSPIMA",
+                        "ENSTBB",
+                        "ESTIA"
+                    ],
                     user: {
+                        imageUrl: "https://picsum.photos/300/200",
+                        prenom: 'Antonin',
+                        ecole: "ENSEIRB-MATMECA",
+                        description: [
+                            {id: 0, text: "Trop cringe"},
+                            {id: 1, text: "S'est déjà fait sucer dans un parc"},
+                            {id: 3, text: "Est le bébou d'Eliot"},
+                            {id: 3, text: "Viens en cours d'info contrairement à certains"}
+                        ]
+                    },
+                    cardUser: {
                         imageUrl: "https://picsum.photos/300/200",
                         prenom: 'Antonin',
                         ecole: "ENSEIRB-MATMECA",
