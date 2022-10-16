@@ -61,7 +61,7 @@ body{
 .card {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
-    margin-top: 3.5em;
+    margin-top: 2.7rem;
     text-align: center;
     background-color: lightgray;
     border-radius: 3em;
@@ -84,13 +84,23 @@ body{
     margin-bottom: 0;
 }
 
-#card-school {
+#card-ecole {
     font-weight: bold;
     font-size: 1rem;
     margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+#card-ecole-filiere {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0;
+    color: rgb(111, 111, 111);
 }
 
 #card-description {
+    margin-top: 0.8rem;
     font-size: 1em;
 }
 

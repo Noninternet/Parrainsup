@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script src="https://kit.fontawesome.com/775facc0e6.js" crossorigin="anonymous"></script>
     <link rel="website icon" type="png" href="./assets/img/logo_ps.png">
     <link rel="stylesheet" href="./style.css">
@@ -26,7 +26,13 @@
                 <div class="form-info-profile-element">
                     <label for="ecole-select">École</label><br>
                     <select v-model="user.ecole" name="ecole" id="ecole-select">
-                        <option v-for=" ecole in listEcoles " :value="ecole">{{ ecole }}</option>
+                        <option v-for=" ecole in listEcoles " :key="ecole.id" :value="ecole.nom">{{ ecole.nom }}</option>
+                    </select>
+                </div>
+                <div class="form-info-profile-element" v-if=" filliereList(user.ecole).length !== 0 ">
+                    <label for="filiere-select">Fillière</label><br>
+                    <select v-model="user.filiere" name="filiere" id="filiere-select">
+                        <option v-for=" filiere in filliereList(user.ecole)" :value="filiere">{{ filiere }}</option>
                     </select>
                 </div>
                 <div class="form-info-profile-element">
@@ -39,11 +45,12 @@
         </div>
         <div id="content-home" v-else>
             <div class="card">
-                <img id="card-picture" v-bind:src="cardUser.imageUrl" alt="photo">
-                <h3 id="card-name">{{ cardUser.prenom }}</h3>
-                <h4 id="card-school">{{ cardUser.ecole }}</h4>
+                <img id="card-picture" v-bind:src="cardUsers[indiceCardUser].imageUrl" alt="photo">
+                <h3 id="card-name">{{ cardUsers[indiceCardUser].prenom }}</h3>
+                <h4 id="card-ecole">{{ cardUsers[indiceCardUser].ecole }}</h4>
+                <h5 v-if=" cardUsers[indiceCardUser].filiere.length !== 0 " id="card-ecole-filiere">{{ cardUsers[indiceCardUser].filiere }}</h5>
                 <div id="card-description">
-                    <p class="card-description-style" v-for="annecdote in cardUser.description" :key="annecdote.id">{{ annecdote.text }}</p>
+                    <p class="card-description-style" v-for="annecdote in cardUsers[indiceCardUser].description" :key="annecdote.id">{{ annecdote.text }}</p>
                 </div>
             </div>
         </div>
@@ -71,21 +78,21 @@
                 return {
                     page: 'home',
                     listEcoles: [
-                        "BSA",
-                        "ENSC",
-                        "ENSCBP Bio",
-                        "ENSCBP Chimie",
-                        "ENSEIGID",
-                        "ENSEIRB-MATMECA",
-                        "ENSGTI",
-                        "ENSPIMA",
-                        "ENSTBB",
-                        "ESTIA"
+                        {id: 0, nom: "BSA", fillieres: []},
+                        {id: 1, nom: "ENSC", fillieres: ["MPC", "Bio"]},
+                        {id: 2, nom: "ENSCBP", fillieres: ["Chimie", "Bio"]},
+                        {id: 3, nom: "ENSEIGID", fillieres: []},
+                        {id: 4, nom: "ENSEIRB-MATMECA", fillieres: ["Informatique", "Télécom", "Électronique", "MATMECA"]},
+                        {id: 5, nom: "ENSGTI", fillieres: []},
+                        {id: 6, nom: "ENSPIMA", fillieres: []},
+                        {id: 7, nom: "ENSTBB", fillieres: []},
+                        {id: 8, nom: "ESTIA", fillieres: []}
                     ],
                     user: {
                         imageUrl: "https://picsum.photos/300/200",
                         prenom: 'Antonin',
                         ecole: "ENSEIRB-MATMECA",
+                        filiere: "Informatique",
                         description: [
                             {id: 0, text: "Trop cringe"},
                             {id: 1, text: "S'est déjà fait sucer dans un parc"},
@@ -93,22 +100,82 @@
                             {id: 3, text: "Viens en cours d'info contrairement à certains"}
                         ]
                     },
-                    cardUser: {
-                        imageUrl: "https://picsum.photos/300/200",
-                        prenom: 'Antonin',
-                        ecole: "ENSEIRB-MATMECA",
-                        description: [
-                            {id: 0, text: "Trop cringe"},
-                            {id: 1, text: "S'est déjà fait sucer dans un parc"},
-                            {id: 3, text: "Est le bébou d'Eliot"},
-                            {id: 3, text: "Viens en cours d'info contrairement à certains"}
-                        ]
-                    }
+                    indiceCardUser: Math.floor(Math.random() * 5),
+                    cardUsers: [
+                        {
+                            imageUrl: "https://cdn.futura-sciences.com/sources/images/cerveau-organe.jpg",
+                            prenom: 'Le gros cerveau',
+                            ecole: "ENSC",
+                            filiere: "MPC",
+                            description: [
+                                {id: 0, text: "A plus de 3 en maths"},
+                                {id: 1, text: "Ressemble à une noix"},
+                                {id: 2, text: "Plus intelligent que toi"},
+                                {id: 3, text: "E = mc²"}
+                            ]
+                        },
+                        {
+                            imageUrl: "https://image.noelshack.com/fichiers/2018/51/1/1545068347-issougang2.png",
+                            prenom: 'Pueblo Excobar',
+                            ecole: "ENSCBP",
+                            filiere: "Chimie",
+                            description: [
+                                {id: 0, text: "Recherché pour traffic de farine"},
+                                {id: 1, text: "A déjà léché les deux boules d'un mec !"},
+                                {id: 2, text: "A plus de sous en cash que sur Izly"}
+                            ]
+                        },
+                        {
+                            imageUrl: "https://picsum.photos/300/200",
+                            prenom: 'Antonin',
+                            ecole: "ENSEIRB-MATMECA",
+                            filiere: "MATMECA",
+                            description: [
+                                {id: 0, text: "Trop cringe"},
+                                {id: 1, text: "S'est déjà fait sucer dans un parc"},
+                                {id: 2, text: "Est le bébou d'Eliot"},
+                                {id: 3, text: "Viens en cours d'info contrairement à certains"}
+                            ]
+                        },
+                        {
+                            imageUrl: "https://media.discordapp.net/attachments/1030941161726152764/1031231529831112904/panda.png",
+                            prenom: 'Alexis',
+                            ecole: "ENSEIRB-MATMECA",
+                            filiere: "Informatique",
+                            description: [
+                                {id: 0, text: "Voisin de Gabrielle"},
+                                {id: 1, text: "Nul en optique"},
+                                {id: 2, text: "Archéologue qui a découvert le cringomètre"},
+                                {id: 3, text: "Viens des fois cours d'info"}
+                            ] 
+                        },
+                        {
+                            imageUrl: "https://media.castorama.fr/is/image/Castorama/parpaing-creux-beton-b40-20-x-20-x-50cm~3664155000031_01c?$MOB_PREV$&$width=618&$height=618",
+                            prenom: 'Cailloux',
+                            ecole: "ENSEIGID",
+                            filiere: "",
+                            description: [
+                                {id: 0, text: "Basalt"},
+                                {id: 1, text: "Parpaing"},
+                                {id: 2, text: "Nickel"},
+                                {id: 3, text: "Gallium"}
+                            ] 
+                        }
+                    ]
                 }
             },
             methods: {
                 changePage(page){
                     this.page = page;
+                },
+                filliereList(ecoleNom){
+                    for (i in this.listEcoles) {
+                        let ecole = this.listEcoles[i]
+                        if (ecole.nom === ecoleNom) {
+                            return ecole.fillieres
+                        }
+                    }
+                    return []
                 }
             }
         }).mount('#page')
