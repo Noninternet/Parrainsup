@@ -41,7 +41,14 @@
               </form>
         </div>
         <div id="content-match" v-else-if=" page === 'match' ">
-            <p>Page des match</p>
+            <h1 id="match-preview-page-title">Vos matchs</h1>
+            <div :class=" classColorMatch(matchUser.match) " class="match-preview-conteiner" v-for=" matchUser in matchs ">
+                <img class="match-preview-photo" :src="matchUser.imageUrl" alt="Photo de {{ matchUser.prenom }}">
+                <div class="match-preview-info">
+                    <h3 class="match-preview-prenom">{{ matchUser.prenom }}</h3>
+                    <h4 class="match-preview-ecole">{{ matchUser.ecole }}</h4>
+                </div>
+            </div>
         </div>
         <div id="content-home" v-else>
             <div class="card">
@@ -89,7 +96,7 @@
                         {id: 8, nom: "ESTIA", fillieres: []}
                     ],
                     user: {
-                        imageUrl: "https://picsum.photos/300/200",
+                        imageUrl: "https://picsum.photos/300/300",
                         prenom: 'Antonin',
                         ecole: "ENSEIRB-MATMECA",
                         filiere: "Informatique",
@@ -100,6 +107,16 @@
                             {id: 3, text: "Viens en cours d'info contrairement à certains"}
                         ]
                     },
+                    matchs: [
+                        {prenom: "Antonin", ecole:"ENSEIRN-MATMECA", imageUrl:"https://picsum.photos/300/300", match: true},
+                        {prenom: "Alexis", ecole:"ENSEIRN-MATMECA", imageUrl:"https://picsum.photos/300/300", match: false},
+                        {prenom: "Joan", ecole:"BTS Kastler", imageUrl:"https://picsum.photos/300/300", match: true},
+                        {prenom: "Eliot", ecole:"Fac d'info", imageUrl:"https://picsum.photos/300/300", match: true},
+                        {prenom: "Mouton", ecole:"BSA", imageUrl:"https://picsum.photos/300/300", match: false},
+                        {prenom: "K you", ecole:"ENSEIGID", imageUrl:"https://picsum.photos/300/300", match: false},
+                        {prenom: "Dinausaure imposant", ecole:"ENSCBP", imageUrl:"https://picsum.photos/300/300", match: true},
+                        {prenom: "Xx_pr0_gam3r_xX", ecole:"ENSEIRN-MATMECA", imageUrl:"https://picsum.photos/300/300", match: false}
+                    ],
                     indiceCardUser: Math.floor(Math.random() * 5),
                     cardUsers: [
                         {
@@ -176,6 +193,12 @@
                         }
                     }
                     return []
+                },
+                classColorMatch(match){
+                    if (match){
+                        return "match-color"
+                    }
+                    return "unmatch-color"
                 }
             }
         }).mount('#page')
