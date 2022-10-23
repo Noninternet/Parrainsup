@@ -58,10 +58,16 @@ body{
     box-shadow: none;
 }
 
+#content-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 77vh;
+}
+
 .card {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
-    margin-top: 2.7rem;
     text-align: center;
     background-color: lightgray;
     border-radius: 3em;
@@ -71,27 +77,27 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#card-picture {
+.card-picture {
     border-radius: 1rem;
     max-width: 12rem;
     max-height: 10rem;
 }
 
-#card-name {
+.card-name {
     margin-top: 0.8rem;
     font-weight: bold;
     font-size: 1.6rem;
     margin-bottom: 0;
 }
 
-#card-ecole {
+.card-ecole {
     font-weight: bold;
     font-size: 1rem;
     margin-top: 0.5rem;
     margin-bottom: 0;
 }
 
-#card-ecole-filiere {
+.card-ecole-filiere {
     font-weight: bold;
     font-size: 1rem;
     margin-top: 0.2rem;
@@ -99,7 +105,7 @@ body{
     color: rgb(111, 111, 111);
 }
 
-#card-description {
+.card-description {
     margin-top: 0.8rem;
     font-size: 1rem;
 }

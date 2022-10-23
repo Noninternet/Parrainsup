@@ -52,11 +52,11 @@
         </div>
         <div id="content-home" v-else>
             <div class="card">
-                <img id="card-picture" v-bind:src="cardUsers[indiceCardUser].imageUrl" alt="photo">
-                <h3 id="card-name">{{ cardUsers[indiceCardUser].prenom }}</h3>
-                <h4 id="card-ecole">{{ cardUsers[indiceCardUser].ecole }}</h4>
-                <h5 v-if=" cardUsers[indiceCardUser].filiere.length !== 0 " id="card-ecole-filiere">{{ cardUsers[indiceCardUser].filiere }}</h5>
-                <div id="card-description">
+                <img class="card-picture" v-bind:src="cardUsers[indiceCardUser].imageUrl" alt="photo">
+                <h3 class="card-name">{{ cardUsers[indiceCardUser].prenom }}</h3>
+                <h4 class="card-ecole">{{ cardUsers[indiceCardUser].ecole }}</h4>
+                <h5 v-if=" cardUsers[indiceCardUser].filiere.length !== 0 " class="card-ecole-filiere">{{ cardUsers[indiceCardUser].filiere }}</h5>
+                <div class="card-description">
                     <p class="card-description-style" v-for="annecdote in cardUsers[indiceCardUser].description" :key="annecdote.id">{{ annecdote.text }}</p>
                 </div>
             </div>
