@@ -30,6 +30,14 @@ body{
     font-weight: bold;
 }
 
+#form-info-profil-conteiner {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 45vh;
+}
+
 #form-info-profile {
     margin-top: 3.2rem;
     padding-top: 2rem;

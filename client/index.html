@@ -18,27 +18,30 @@
         </div>
         <div id="content-profile" v-if=" page === 'profile' ">
             <h1 id="profile-page-title">Modifiez les informations de votre profil</h1>
-            <form action="" method="get" id="form-info-profile">
-                <div class="form-info-profile-element">
-                    <label for="prenom-input">Prénom</label><br>
-                    <input v-model="user.prenom" type="text" name="prenom" id="prenom-input" required>
-                </div>
-                <div class="form-info-profile-element">
-                    <label for="ecole-select">École</label><br>
-                    <select v-model="user.ecole" name="ecole" id="ecole-select">
-                        <option v-for=" ecole in listEcoles " :key="ecole.id" :value="ecole.nom">{{ ecole.nom }}</option>
-                    </select>
-                </div>
-                <div class="form-info-profile-element" v-if=" filliereList(user.ecole).length !== 0 ">
-                    <label for="filiere-select">Fillière</label><br>
-                    <select v-model="user.filiere" name="filiere" id="filiere-select">
-                        <option v-for=" filiere in filliereList(user.ecole)" :value="filiere">{{ filiere }}</option>
-                    </select>
-                </div>
-                <div class="form-info-profile-element">
-                    <input id="form-info-profile-submit" type="submit" value="Modifier le profil">
-                </div>
-              </form>
+            <div id="form-info-profil-conteiner">
+                <form action="" method="get" id="form-info-profile">
+                    <div class="form-info-profile-element">
+                        <label for="prenom-input">Prénom</label><br>
+                        <input v-model="user.prenom" type="text" name="prenom" id="prenom-input" required>
+                    </div>
+                    <div class="form-info-profile-element">
+                        <label for="ecole-select">École</label><br>
+                        <select v-model="user.ecole" name="ecole" id="ecole-select">
+                            <option v-for=" ecole in listEcoles " :key="ecole.id" :value="ecole.nom">{{ ecole.nom }}</option>
+                        </select>
+                    </div>
+                    <div class="form-info-profile-element" v-if=" filliereList(user.ecole).length !== 0 ">
+                        <label for="filiere-select">Fillière</label><br>
+                        <select v-model="user.filiere" name="filiere" id="filiere-select">
+                            <option v-for=" filiere in filliereList(user.ecole)" :value="filiere">{{ filiere }}</option>
+                        </select>
+                    </div>
+                    <div class="form-info-profile-element">
+                        <input id="form-info-profile-submit" type="submit" value="Modifier le profil">
+                    </div>
+                </form>
+            </div>
+
         </div>
         <div id="content-match" v-else-if=" page === 'match' ">
             <h1 id="match-preview-page-title">Vos matchs</h1>
