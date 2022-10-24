@@ -16,6 +16,17 @@ body{
     padding-bottom: 1.1rem;
 }
 
+#accueil-logo {
+    background-color: #bfc9f4;
+    text-align: center;
+}
+
+#accueil-logo img {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+    scale: 170%
+}
+
 #logo {
     scale: 80%;
 }
